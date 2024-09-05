@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Unit Testing Page</title>
+    <style type="text/css">
+        body { font-family: Arial, sans-serif; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid black; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <table id="resultsTable">
+        <thead>
+        <tr>
+            <th>Test Description</th>
+            <th>Expected Result</th>
+            <th>Received Result</th>
+            <th>Pass/Fail</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</body>
+
+<script>
+
+
+    function getSessionCookie(){
+
+        let session = document.cookie.split('=').reverse()[0] // puts session cookie into a variable
+        console.log(session)
+        return session
+
+    }
+    //makes a mock api to check if the fetch is working correctly
+    function mockAPI(url) {
+        const endpoint = url.split('?')[0];
+        const params = new URLSearchParams(url.split('?')[1]);
+
+        switch (endpoint) {
+            case "https://codecyprus.org/th/test-api/start":
+                if (params.get('player') === 'inactive') {
+                    return { error: "Treasure hunt isn't active." };
+                } else if (params.get('player') === 'invalid') {
+                    return { error: 'Invalid treasure hunt ID.' };
+                } else {
+                    return { message: 'Treasure hunt started.', sessionId: `${session}` };
+                }
+
+
+            case "https://codecyprus.org/th/test-api/question":
+                if (params.get('completed') === 'true') {
+                    return { error: "Treasure hunt has already been completed." };
+                } else {
+                    const questionType = params.get('question-type') || 'RANDOM';
+                    const canBeSkipped = params.has('can-be-skipped') ? true : false;
+                    const requiresLocation = params.has('requires-location') ? true : false;
+                    return {
+                        question: "Where is uclan?",
+                        type: questionType,
+                        canBeSkipped: canBeSkipped,
+                        requiresLocation: requiresLocation
+                    };
+                }
+
+            case "https://codecyprus.org/th/test-api/answer":
+                if (params.has('answer')) {
+                    return { message: "Answer is valid." };
+                } else {
+                    return { error: "No answer provided." };
+                }
+
+            case "https://codecyprus.org/th/test-api/leaderboard":
+                const size = parseInt(params.get('size'), 10) || 5; // Default size to 5 if not provided
+                let leaderboard = [];
+                for (let i = 0; i < size; i++) {
+                    leaderboard.push({ player: `Player ${i + 1}`, score: 100 - i });
+                }
+                if (params.get('sorted') === 'true') {
+                    leaderboard.sort((a, b) => b.score - a.score);
+                }
+                return { leaderboard: leaderboard.slice(0, size) };
+
+            default:
+                return { error: "Error." };
+        }
+    }
+
+    function performTest(description, url, expected) {
+        const result = mockAPI(url);
+        const received = JSON.stringify(result);
+        const expectedString = JSON.stringify(expected);
+        const pass = received === expectedString;
+        appendResult(description, expectedString, received, pass);
+    }
+
+    function appendResult(description, expected, received, pass) {
+        const table = document.getElementById('resultsTable').getElementsByTagName('tbody')[0];
+        const newRow = table.insertRow(table.rows.length);
+        newRow.innerHTML = `<td>${description}</td><td>${expected}</td><td>${received}</td><td>${pass ? 'Pass' : 'Fail'}</td>`;
+    }
+
+    var session = getSessionCookie();
+    // Call tests
+
+    performTest("Start treasure hunt check with valid player", "https://codecyprus.org/th/test-api/start?player=active", { message: 'Treasure hunt started.', sessionId: `${session}` });
+    performTest("Answer check to question with parameter", "https://codecyprus.org/th/test-api/answer?answer=42", { message: "Answer is valid." });
+    performTest("leaderBoard Fetch check with 5 entries, sorted", "https://codecyprus.org/th/test-api/leaderboard?sorted=true&size=5", {"leaderboard":[{"player":"Player 1","score":100},{"player":"Player 2","score":99},{"player":"Player 3","score":98},{"player":"Player 4","score":97},{"player":"Player 5","score":96}] });
+    performTest("Fetch question with type MCQ, can be skipped and requires location", "https://codecyprus.org/th/test-api/question?question-type=MCQ&can-be-skipped&requires-location", { question: "Where is uclan?", type: "MCQ", canBeSkipped: true, requiresLocation: true });
+
+</script>
+
+
+</body>
+</html>

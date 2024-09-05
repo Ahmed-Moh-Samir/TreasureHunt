@@ -1,0 +1,194 @@
+
+#leaderBoardContainer{
+    font-size: 20px;
+}
+
+h2{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+}
+
+h1{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+
+}
+
+p{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+}
+
+body {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 20px;
+    background: rgb(175, 171, 220);
+    background: linear-gradient(90deg, rgb(206, 203, 222) 0%, rgb(148, 148, 236) 35%, rgb(187, 148, 238) 100%);
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    min-height: 100vh;
+}
+
+h1 {
+    margin-top: 20px;
+    text-align: center;
+}
+
+h1 a {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    transition: color 0.3s;
+}
+
+h1 a:hover {
+    color: #ccc;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#showForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    width: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#showForm label {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#showForm input[type="text"] {
+    width: 84%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 4px;
+}
+
+.submit button {
+    cursor: pointer;
+    padding: 12px 24px;
+    background-color: #4c49e3;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    text-transform: uppercase;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /
+    transition: all 0.3s ease;
+}
+
+.submit button:hover {
+    background-color: #6a67d8;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    transform: translateY(-2px);
+}
+
+.submit button:active {
+    background-color: #3835a8;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+    transform: translateY(1px);
+}
+
+#buttonContainer{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+#skip_button button{
+
+
+    text-align: center;
+}
+
+button {
+    width: 94%;
+    cursor: pointer;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    margin: 10px;
+    background-color: #ff8c00;
+}
+
+.button:hover {
+    background-color: #ffa500; /* Lighter shade on hover */
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px); /* Slight lift effect */
+}
+
+.button:active {
+    background-color: #cc7000; /* Darker shade when active */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    transform: translateY(1px);
+}
+#answerForm {
+    background: rgba(255, 255, 255, 0.2); /* Light transparent background */
+    padding: 20px;
+    border-radius: 8px;
+}
+
+#answerField {
+    width: 80%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+#questionContainer {
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+    color: white; /* Maintaining text visibility */
+}
+
+#score{
+    align-items: center;
+    justify-content: left;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 20px;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+
+}
+
+

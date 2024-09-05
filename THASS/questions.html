@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>questions</title>
+    <link rel="stylesheet" href="design.css">
+</head>
+<body>
+
+    <h2>
+        <a href="LeaderBoard.html">Leaderboard</a>
+    </h2>
+
+    <h3>
+        <a href="unit%20testing.html">Test</a>
+    </h3>
+    <h1>
+        Question Page:
+    </h1>
+
+    <div id="questionContainer">
+
+        <p id="score">
+            score: 
+        </p>
+    <form id="answerForm" >
+        <label id="question">
+
+        </label>
+
+        <input id ="answerField" type="text" placeholder="Answer the question" >
+
+        <div id="buttonContainer">
+        <button type="button" id = "doneButton" onclick="getAnswer()">Done</button>
+        <button type="button" style ="display: block;" id="skip_button" onclick="skipQuestion()">Skip</button>
+        </div>
+    </form>
+
+
+    </div>
+
+<script src="QuestionAnswer.js"></script>
+</body>
+</html>
